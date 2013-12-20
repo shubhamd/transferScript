@@ -14,7 +14,7 @@ Features :
 
 Dependencies :
 
-Install config package, which doesn't comes preloaded with the default python modules with IDLE on windows or with ubuntu.
+Install config module, which doesn't comes preloaded with the default python modules with IDLE on windows or with ubuntu.
 
 
 
