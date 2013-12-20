@@ -51,7 +51,6 @@ class transferScript():
                 # try to create it
                 os.makedirs(path)
             except OSError as exception:
-		print "hi !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
                 # raise all errors except of the error that shows us that the dir already exists already
                 if exception.errno != errno.EEXIST: 
                     raise

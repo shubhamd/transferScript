@@ -12,5 +12,11 @@ Features :
 
 4.For first time users, browser is opened automatically with required URL.
 
+Dependencies :
+
+Install config package, which doesn't comes preloaded with the default python modules with IDLE on windows or with ubuntu.
+
+
+
 TODO :
 1. Resolve the error while creating a path for a nested directory.
