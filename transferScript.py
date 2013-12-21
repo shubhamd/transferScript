@@ -61,7 +61,8 @@ class transferScript():
         (dir_path,tail) = os.path.split(target_path)
         self.check_dir(dir_path)
         to_file = open(file_path,"wb")
-        
+        s,p = os.path.split(source_path)
+        source_path = s+"/"+p
         f= self.mClient.get_file(source_path)
         to_file.write(f.read())
         return
@@ -91,8 +92,7 @@ class transferScript():
 def main():
     data_exchange_obj = transferScript()
     data_exchange_obj.init_download()
-	data_exchange_obj.upload_result()
-	downloader_
+	
 
 if __name__ == '__main__':
     main()
