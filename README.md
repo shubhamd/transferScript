@@ -16,11 +16,11 @@ Dependencies :
 
 Install config module, which doesn't comes preloaded with the default python modules with IDLE on windows or with ubuntu.
 
+How to use :
 
+1.Install dependencies.(see above "dependencies")
 
-TODO :
-1. Resolve the error while creating a path for a nested directory.
-(Update : Now works fine with directories having structure as : dropbox /any_folder or dropbox/any_image.jpg
-but doesn't work when dropbox/folder/folder/image.jpg
-)
+2.Put your app keys and app secret in tokens.cfg.
+
+3.You will need to authenticate in the browser for the first time.
 
