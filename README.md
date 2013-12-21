@@ -20,3 +20,7 @@ Install config module, which doesn't comes preloaded with the default python mod
 
 TODO :
 1. Resolve the error while creating a path for a nested directory.
+(Update : Now works fine with directories having structure as : dropbox /any_folder or dropbox/any_image.jpg
+but doesn't work when dropbox/folder/folder/image.jpg
+)
+
