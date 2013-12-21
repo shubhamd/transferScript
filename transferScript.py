@@ -79,13 +79,14 @@ class transferScript():
         file_path = os.path.expanduser(target_path)
         (dir_path,tail) = os.path.split(target_path)
         self.check_dir(dir_path)
+	print "file path is :",file_path
         to_file = open(file_path,"wb")
 		
-        s = os.path.split(source_path)
-	
-        jugaad_string = self.correct_path(s) # This string need to be corrected more, to match the Unix convention 
-		
-        f= self.mClient.get_file(jugaad_string) # Code crashes at this line for deeper directories. 
+        #s = os.path.split(source_path)
+	source_path = source_path.replace("\\","/")
+        #jugaad_string = self.correct_path(s) # This string need to be corrected more, to match the Unix convention 
+	print "source path is : ",source_path	
+        f= self.mClient.get_file(source_path) # Code crashes at this line for deeper directories. 
         to_file.write(f.read())
         return
     def download_folder(self, folderPath):
@@ -100,6 +101,8 @@ class transferScript():
                     name = os.path.basename(f['path'])
                     correction = f['path']
                     complete_path = os.path.join(folderPath, name)
+                    complete_path = complete_path.replace("\\","/")
+		    print "complete path is :",complete_path 
                     if f['is_dir']:            
                         # do recursion to also download this folder
                         self.download_folder(complete_path)
