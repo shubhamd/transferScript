@@ -1,8 +1,6 @@
 import webbrowser 
 import os 
-import errno
-import time
-import datetime 
+import errno 
 from dropbox import session, rest, client
 from config import Config  # TODO :  Use pickle module instead, as it comes preloaded with the Python modules.
 # other modules that can be used instead of config : configobj , pickle, jsonlib
@@ -54,25 +52,20 @@ class transferScript():
 
 
     def check_dir(self,path):
-        if path !='':
+        if not os.path.exists(path):   # reference : http://stackoverflow.com/questions/273192/create-directory-if-it-doesnt-exist-for-file-write
             #check if the directory exists, if not
             try:
                 # try to create it
                 os.makedirs(path)
+		print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1"
             except OSError as exception:
                 # raise all errors except of the error that shows us that the dir already exists already
                 if exception.errno != errno.EEXIST: 
                     raise
     
-    # ISSUE CODE : Dropbox's server follow path convention of Unix. so I improved the recursion depth to '1'
-	# but it is still following windows path convention for deeper directories.
-	#TODO : Improve the recursion depth.
-    def correct_path(self, correct_me):
-        t=""
-        for i in correct_me:
-            t+= "/"+i.replace("\\","/")
-        print t    
-        return t    
+    # Dropbox's server follow path convention of Unix. So I used mString.replace(args) to correct the path
+	# issue confirmation : https://github.com/michaeldewildt/WordPress-Backup-to-Dropbox/issues/123
+        
             
     def download_file(self,source_path,target_path):
         print 'Downloading %s' % source_path
@@ -82,9 +75,9 @@ class transferScript():
 	print "file path is :",file_path
         to_file = open(file_path,"wb")
 		
-        #s = os.path.split(source_path)
-	source_path = source_path.replace("\\","/")
-        #jugaad_string = self.correct_path(s) # This string need to be corrected more, to match the Unix convention 
+        
+	source_path = source_path.replace("\\","/")  # replace() the backslashes with forward slashes.
+        # Unix convention 
 	print "source path is : ",source_path	
         f= self.mClient.get_file(source_path) # Code crashes at this line for deeper directories. 
         to_file.write(f.read())
@@ -94,20 +87,20 @@ class transferScript():
         # SCOPE : To filter out the images, we just need to check the mime type in the response.
         try:
             response = self.mClient.metadata(folderPath)
-                # Ensure that response includes content
+                # Download has been initiated from the default dropbox directory in folderpath.
 	    
             if 'contents' in response:
                 for f in response['contents']:
                     name = os.path.basename(f['path'])
-                    correction = f['path']
+                    
                     complete_path = os.path.join(folderPath, name)
                     complete_path = complete_path.replace("\\","/")
 		    print "complete path is :",complete_path 
                     if f['is_dir']:            
-                        # do recursion to also download this folder
+                        # call download_folder() recursively
                         self.download_folder(complete_path)
                     else:
-                        # download the file
+                        # if it is not a directory, it is a file, so download.
                         self.download_file(complete_path, os.path.join(self._target_folder, complete_path))
             else:
                 raise ValueError
@@ -117,13 +110,14 @@ class transferScript():
     def upload_file(self):
         with open('./dtu.jpg','rb') as f:
             
-            response = self.mClient.put_file('/uploaded.jpg', f) #put_file takes a path pointing to where we want the file, a file-like object to be uploaded there.
+            response = self.mClient.put_file('/name_after_uploading.jpg', f)
+			#put_file takes a path pointing to where we want the file, a file-like object to be uploaded there.
             print "The file has been uploaded successfully !"
         
 def main():
     data_exchange_obj = transferScript() # create instance
     data_exchange_obj.init_download() # start download 
-#   data_exchange_obj.upload_file                   # Ensure that  dtu.jpg exists in the same directory as this python program. 
+#   data_exchange_obj.upload_file()                   # Ensure that  dtu.jpg exists in the same directory as this python program. 
 	                                                # Only images can be uploaded to the server. ( as per my app permissions, if you use my app keys) 
 
 if __name__ == '__main__':
