@@ -27,3 +27,8 @@ Install [config module](https://pypi.python.org/pypi/config/0.3.7), which doesn'
 
 3. You will need to authenticate in the browser for the first time.
 
+##TODO :
+---
+1. Use Dropbox Delta function to provide an option for downloading of changed files.
+2. Analyse response to download only images.
+3. Use chunked upload.
