@@ -57,7 +57,7 @@ class transferScript():
             try:
                 # try to create it
                 os.makedirs(path)
-		print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1"
+		
             except OSError as exception:
                 # raise all errors except of the error that shows us that the dir already exists already
                 if exception.errno != errno.EEXIST: 
@@ -74,12 +74,12 @@ class transferScript():
         self.check_dir(dir_path)
 	print "file path is :",file_path
         to_file = open(file_path,"wb")
-		
+		# wb for binary files .
         
 	source_path = source_path.replace("\\","/")  # replace() the backslashes with forward slashes.
         # Unix convention 
 	print "source path is : ",source_path	
-        f= self.mClient.get_file(source_path) # Code crashes at this line for deeper directories. 
+        f= self.mClient.get_file(source_path) # Code USED TO CRASH at this line for deeper directories. As it was't following same path convention as Dropbox Servers.
         to_file.write(f.read())
         return
     def download_folder(self, folderPath):

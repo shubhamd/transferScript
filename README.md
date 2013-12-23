@@ -1,26 +1,29 @@
 transferScript
 ==============
-A Python script to download and upload content from/to Dropbox.
+A Python script to download and upload content from/to your Dropbox.
 
-Features :
+##Features :
+---
 
-1.Can traverse user's Dropbox directories recursively thus the script works even if there is any level of nesting of folders.
+1. Can traverse user's Dropbox directories recursively thus the script works even if there is any level of nesting of folders.
 
-2.Authentication from Dropbox is required only once.
+2. Authentication from Dropbox is required only once.
 
-3.You can manually edit the tokens.cfg file to put your own app keys.
+3. You can manually edit the tokens.cfg file to put your own app keys.
 
-4.For first time users, browser is opened automatically with required URL.
+4. For first time users, browser is opened automatically with required URL.
 
-Dependencies :
+##Dependencies :
+---
 
-Install config module, which doesn't comes preloaded with the default python modules with IDLE on windows or with ubuntu.
+Install [config module](https://pypi.python.org/pypi/config/0.3.7), which doesn't comes preloaded with the default python modules with IDLE on windows or with Ubuntu.
 
-How to use :
+##How to use :
+---
 
-1.Install dependencies.(see above "dependencies")
+1. Install dependencies.
 
-2.Put your app keys and app secret in tokens.cfg.
+2. Put your app keys and app secret in tokens.cfg.
 
-3.You will need to authenticate in the browser for the first time.
+3. You will need to authenticate in the browser for the first time.
 
