@@ -33,3 +33,6 @@ Install [config module](https://pypi.python.org/pypi/config/0.3.7), which doesn'
 2. Analyse response to download only images.
 3. Use chunked upload.
 4. Support for checking version history of a file. 
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shubhamd/transferscript/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
